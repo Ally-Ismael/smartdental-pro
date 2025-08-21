@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Services | InnoVastra Dental</title>
+	<link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-inner">
+			<div class="logo">InnoVastra Dental</div>
+			<nav class="nav">
+				<a href="index.html">Home</a>
+				<a href="about.html">About</a>
+				<a href="services.html" class="active">Services</a>
+				<a href="bookings.html" class="cta">Book</a>
+				<a href="contact.html">Contact</a>
+				<a href="portal-login.html" class="portal">Portal</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container section">
+		<div class="grid cols-2">
+			<div class="card">
+				<h2>Dental Services</h2>
+				<ul>
+					<li>Check-ups & Cleanings</li>
+					<li>Fillings & Restorations</li>
+					<li>Root Canal Therapy</li>
+					<li>Crowns & Bridges</li>
+					<li>Whitening & Cosmetic Dentistry</li>
+					<li>Emergency Dentistry</li>
+				</ul>
+			</div>
+			<div class="card">
+				<h3>AI Support</h3>
+				<p>AI triage helps route urgent cases and propose suitable appointment windows. Clinicians get quick history summaries during consults.</p>
+				<a class="btn primary" href="bookings.html">Book now</a>
+			</div>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<p>© <span id="year"></span> InnoVastra Dental. All rights reserved.</p>
+		</div>
+	</footer>
+
+	<div id="chatbot" class="chatbot">
+		<button id="chatToggle" aria-label="Open chat" class="chat-toggle">AI</button>
+		<div class="chat-window" hidden>
+			<div class="chat-header">AI Assistant</div>
+			<div class="chat-body" id="chatBody"></div>
+			<form id="chatForm" class="chat-input">
+				<input id="chatMsg" type="text" placeholder="Describe your symptoms..." />
+				<button type="submit">Send</button>
+			</form>
+		</div>
+	</div>
+
+	<script src="./assets/main.js"></script>
+</body>
+</html>
+
