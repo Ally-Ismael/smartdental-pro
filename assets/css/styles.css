@@ -9,6 +9,17 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-footer {
+    margin-top: auto;
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    padding: 24px 16px;
+    background: rgba(0,0,0,0.1);
+    backdrop-filter: blur(6px);
 }
 
 .container {
