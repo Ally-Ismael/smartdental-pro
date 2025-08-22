@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Doctor Dashboard | SmartDental Pro</title>
+	<link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-inner">
+			<div class="logo">SmartDental Pro</div>
+			<nav class="nav">
+				<a href="index.html">Home</a>
+				<a href="services.html">Services</a>
+				<a href="bookings.html" class="cta">Book</a>
+				<a href="login.html" class="portal active">Login</a>
+			</nav>
+		</div>
+	</header>
+	<main class="container section">
+		<div class="grid cols-2">
+			<div class="card">
+				<h2>My Notifications</h2>
+				<p>Upcoming appointments assigned to you.</p>
+				<table id="docApptTable" class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Date</th>
+							<th>Time</th>
+							<th>Patient</th>
+							<th>Service</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			<div class="card">
+				<h2>Patient History Lookup</h2>
+				<label class="label" for="lookupId">Patient ID</label>
+				<div class="row">
+					<input id="lookupId" class="input" placeholder="e.g. P12345" />
+					<button id="lookupBtn" class="btn">Fetch</button>
+				</div>
+				<div id="historyResult" style="margin-top:12px;"></div>
+			</div>
+			<div class="card">
+				<h2>AI Assistant (Clinical)</h2>
+				<label class="label" for="prompt">Prompt</label>
+				<textarea id="prompt" class="input" rows="5" placeholder="Summarize history and propose a prescription for acute pulpitis..."></textarea>
+				<div class="actions">
+					<button id="aiSuggest" class="btn primary">Generate</button>
+				</div>
+				<div id="aiOutput" style="margin-top:12px;"></div>
+			</div>
+		</div>
+	</main>
+	<footer class="site-footer">
+		<div class="container">
+			<p>© <span id="year"></span> SmartDental Pro. All rights reserved.</p>
+		</div>
+	</footer>
+	<div id="chatbot" class="chatbot">
+		<button id="chatToggle" aria-label="Open chat" class="chat-toggle">AI</button>
+		<div class="chat-window" hidden>
+			<div class="chat-header">AI Assistant</div>
+			<div class="chat-body" id="chatBody"></div>
+			<form id="chatForm" class="chat-input">
+				<input id="chatMsg" type="text" placeholder="Describe your symptoms..." />
+				<button type="submit">Send</button>
+			</form>
+		</div>
+	</div>
+	<script src="./assets/main.js"></script>
+	<script>
+	(function(){
+		var session = JSON.parse(localStorage.getItem('session') || '{}');
+		var doctorName = session.role === 'doctor' && session.email ? (session.email.split('@')[0]) : 'Any available';
+		var table = document.getElementById('docApptTable');
+		function renderDocAppts(){
+			var list = JSON.parse(localStorage.getItem('appointments') || '[]');
+			var tbody = table.querySelector('tbody');
+			tbody.innerHTML = '';
+			list.filter(function(a){ return a.dentist === 'Dr. ' + capitalize(doctorName) || a.dentist === 'Any available'; }).forEach(function(a){
+				var tr = document.createElement('tr');
+				tr.innerHTML = '<td>'+a.id+'</td><td>'+a.date+'</td><td>'+a.time+'</td><td>'+(a.fullName||'-')+'</td><td>'+a.service+'</td>';
+				tbody.appendChild(tr);
+			});
+		}
+		function capitalize(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+		renderDocAppts();
+
+		var lookupBtn = document.getElementById('lookupBtn');
+		lookupBtn.addEventListener('click', function(){
+			var pid = document.getElementById('lookupId').value.trim();
+			var area = document.getElementById('historyResult');
+			if (!pid) { area.textContent = 'Enter a Patient ID.'; return; }
+			// Mock: derive history
+			var mock = getMockHistory(pid);
+			area.innerHTML = '<div class="card">\n<strong>Patient:</strong> '+(mock.name)+' ('+pid+')<br/><strong>Allergies:</strong> '+mock.allergies.join(', ')+'<br/><strong>Past Procedures:</strong> '+mock.procedures.join('; ')+'<br/><strong>Conditions:</strong> '+mock.conditions.join(', ')+'</div>';
+		});
+
+		function getMockHistory(pid){
+			var seed = pid.split('').reduce(function(a,c){return a+c.charCodeAt(0);},0);
+			var names = ['Amelia', 'Kuda', 'Nelao', 'Petrus', 'Tomas', 'Luna'];
+			return {
+				name: names[seed % names.length] + ' ' + ['Shilongo','Amutenya','Van Wyk','Kahuure'][seed % 4],
+				allergies: (seed % 3 === 0) ? ['Penicillin'] : ['None Recorded'],
+				procedures: seed % 2 ? ['Filling (2023-04-10)', 'Root Canal (2024-01-22)'] : ['Cleaning (2024-02-15)'],
+				conditions: seed % 5 ? ['Hypertension'] : ['Diabetes Mellitus Type II']
+			};
+		}
+
+		var aiBtn = document.getElementById('aiSuggest');
+		aiBtn.addEventListener('click', function(){
+			var prompt = document.getElementById('prompt').value.trim();
+			var out = document.getElementById('aiOutput');
+			if (!prompt) { out.textContent = 'Enter a prompt to generate suggestions.'; return; }
+			// Mock AI output
+			out.innerHTML = '<div class="card">\n<strong>AI Suggestion:</strong><br/>\n- Likely acute pulpitis; consider analgesic and antibiotic protocol if indicated.<br/>- Example Rx (mock): Ibuprofen 400mg, 1 tab 8-hourly prn pain, 5 days. Amoxicillin 500mg, 1 cap 8-hourly, 5 days (avoid if penicillin allergy).\n<br/>- Schedule definitive endodontic therapy.\n</div>';
+		});
+	})();
+	</script>
+</body>
+</html>

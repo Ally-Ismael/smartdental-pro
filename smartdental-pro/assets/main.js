@@ -60,10 +60,11 @@
 })();
 
 (function initBookings() {
-	var page = document.body;
-	if (!page || !document.getElementById('bookingForm')) return;
+	if (!document.getElementById('bookingForm')) return;
 
 	var form = document.getElementById('bookingForm');
+	var fullNameEl = document.getElementById('fullName');
+	var patientIdEl = document.getElementById('patientId');
 	var dateEl = document.getElementById('date');
 	var timeEl = document.getElementById('time');
 	var serviceEl = document.getElementById('service');
@@ -90,7 +91,7 @@
 	generateSlots();
 
 	function renderSummary() {
-		summaryEl.textContent = serviceEl.value + ' with ' + dentistEl.value + ' on ' + dateEl.value + ' at ' + timeEl.value;
+		summaryEl.textContent = (serviceEl.value + ' with ' + dentistEl.value + ' on ' + dateEl.value + ' at ' + timeEl.value).trim();
 	}
 	[dateEl, timeEl, serviceEl, dentistEl].forEach(function (el) { el.addEventListener('change', renderSummary); });
 	renderSummary();
@@ -99,6 +100,8 @@
 		e.preventDefault();
 		var appt = {
 			id: 'A' + Math.random().toString(36).slice(2, 9).toUpperCase(),
+			fullName: fullNameEl && fullNameEl.value || '',
+			patientId: patientIdEl && patientIdEl.value || '',
 			date: dateEl.value,
 			time: timeEl.value,
 			service: serviceEl.value,
@@ -110,19 +113,6 @@
 		localStorage.setItem('appointments', JSON.stringify(list));
 		alert('Appointment booked!\n\n' + appt.id + ' — ' + appt.date + ' ' + appt.time);
 		window.location.href = 'patient-portal.html';
-	});
-})();
-
-(function initPortalLogin() {
-	var form = document.getElementById('loginForm');
-	if (!form) return;
-	form.addEventListener('submit', function (e) {
-		e.preventDefault();
-		var role = document.getElementById('role').value;
-		localStorage.setItem('role', role);
-		if (role === 'patient') window.location.href = 'patient-portal.html';
-		else if (role === 'staff') window.location.href = 'staff-portal.html';
-		else window.location.href = 'admin-dashboard.html';
 	});
 })();
 

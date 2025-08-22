@@ -3,29 +3,33 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Book an Appointment | InnoVastra Dental</title>
+	<title>Book an Appointment | SmartDental Pro</title>
 	<link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body>
 	<header class="site-header">
 		<div class="container header-inner">
-			<div class="logo">InnoVastra Dental</div>
+			<div class="logo">SmartDental Pro</div>
 			<nav class="nav">
 				<a href="index.html">Home</a>
 				<a href="about.html">About</a>
 				<a href="services.html">Services</a>
 				<a href="bookings.html" class="cta active">Book</a>
 				<a href="contact.html">Contact</a>
-				<a href="portal-login.html" class="portal">Portal</a>
+				<a href="login.html" class="portal">Login</a>
+				<a href="register.html">Register</a>
 			</nav>
 		</div>
 	</header>
-
 	<main class="container section">
 		<div class="grid cols-2">
 			<div class="card">
 				<h2>Appointment Details</h2>
 				<form id="bookingForm" class="form">
+					<label class="label" for="fullName">Full Name</label>
+					<input id="fullName" class="input" placeholder="Your full name" />
+					<label class="label" for="patientId">Patient ID (optional)</label>
+					<input id="patientId" class="input" placeholder="e.g. P12345" />
 					<div class="row">
 						<div>
 							<label class="label" for="date">Date</label>
@@ -65,13 +69,11 @@
 			</div>
 		</div>
 	</main>
-
 	<footer class="site-footer">
 		<div class="container">
-			<p>© <span id="year"></span> InnoVastra Dental. All rights reserved.</p>
+			<p>© <span id="year"></span> SmartDental Pro. All rights reserved.</p>
 		</div>
 	</footer>
-
 	<div id="chatbot" class="chatbot">
 		<button id="chatToggle" aria-label="Open chat" class="chat-toggle">AI</button>
 		<div class="chat-window" hidden>
@@ -83,7 +85,6 @@
 			</form>
 		</div>
 	</div>
-
 	<script src="./assets/main.js"></script>
 </body>
 </html>

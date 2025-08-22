@@ -3,50 +3,40 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Patient Portal | InnoVastra Dental</title>
+	<title>Admin Dashboard | SmartDental Pro</title>
 	<link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body>
 	<header class="site-header">
 		<div class="container header-inner">
-			<div class="logo">InnoVastra Dental</div>
+			<div class="logo">SmartDental Pro</div>
 			<nav class="nav">
 				<a href="index.html">Home</a>
 				<a href="about.html">About</a>
 				<a href="services.html">Services</a>
 				<a href="bookings.html" class="cta">Book</a>
 				<a href="contact.html">Contact</a>
-				<a href="portal-login.html" class="portal active">Portal</a>
+				<a href="login.html" class="portal active">Login</a>
+				<a href="register.html">Register</a>
 			</nav>
 		</div>
 	</header>
-
 	<main class="container section">
-		<div class="card">
-			<h2>My Appointments</h2>
-			<table id="apptTable" class="table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Date</th>
-						<th>Time</th>
-						<th>Service</th>
-						<th>Dentist</th>
-						<th>Status</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+		<div class="kpi">
+			<div class="card"><div>Total Appointments</div><div style="font-size:28px;font-weight:700;" id="kpiTotal">0</div></div>
+			<div class="card"><div>Upcoming</div><div style="font-size:28px;font-weight:700;" id="kpiUpcoming">0</div></div>
+			<div class="card"><div>Cancelled</div><div style="font-size:28px;font-weight:700;" id="kpiCancelled">0</div></div>
+		</div>
+		<div class="card" style="margin-top:12px;">
+			<h3>Monthly Booking Fill</h3>
+			<div class="bar"><i id="monthBar" style="width:0%"></i></div>
 		</div>
 	</main>
-
 	<footer class="site-footer">
 		<div class="container">
-			<p>© <span id="year"></span> InnoVastra Dental. All rights reserved.</p>
+			<p>© <span id="year"></span> SmartDental Pro. All rights reserved.</p>
 		</div>
 	</footer>
-
 	<div id="chatbot" class="chatbot">
 		<button id="chatToggle" aria-label="Open chat" class="chat-toggle">AI</button>
 		<div class="chat-window" hidden>
@@ -58,7 +48,6 @@
 			</form>
 		</div>
 	</div>
-
 	<script src="./assets/main.js"></script>
 </body>
 </html>

@@ -3,58 +3,45 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Staff Portal | InnoVastra Dental</title>
+	<title>About | SmartDental Pro</title>
 	<link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body>
 	<header class="site-header">
 		<div class="container header-inner">
-			<div class="logo">InnoVastra Dental</div>
+			<div class="logo">SmartDental Pro</div>
 			<nav class="nav">
 				<a href="index.html">Home</a>
-				<a href="about.html">About</a>
+				<a href="about.html" class="active">About</a>
 				<a href="services.html">Services</a>
 				<a href="bookings.html" class="cta">Book</a>
 				<a href="contact.html">Contact</a>
-				<a href="portal-login.html" class="portal active">Portal</a>
+				<a href="login.html" class="portal">Login</a>
+				<a href="register.html">Register</a>
 			</nav>
 		</div>
 	</header>
-
 	<main class="container section">
-		<div class="card">
-			<h2>Today's Appointments</h2>
-			<div class="row">
-				<div>
-					<label class="label" for="staffDate">Date</label>
-					<input id="staffDate" class="input" type="date" />
-				</div>
-				<div class="actions" style="align-self:end;">
-					<button id="filter" class="btn">Filter</button>
-				</div>
+		<div class="grid cols-2">
+			<div class="card">
+				<h2>About Our Clinic</h2>
+				<p>We combine compassionate care with modern technology. AI-supported workflows reduce wait times, improve diagnostics, and streamline your experience from booking to follow-up.</p>
 			</div>
-			<table id="staffApptTable" class="table" style="margin-top:12px;">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Date</th>
-						<th>Time</th>
-						<th>Service</th>
-						<th>Dentist</th>
-						<th>Status</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+			<div class="card">
+				<h3>Why SmartDental Pro</h3>
+				<ul>
+					<li>Patient-first, privacy-focused</li>
+					<li>Evidence-based treatment plans</li>
+					<li>Secure and compliant operations</li>
+				</ul>
+			</div>
 		</div>
 	</main>
-
 	<footer class="site-footer">
 		<div class="container">
-			<p>© <span id="year"></span> InnoVastra Dental. All rights reserved.</p>
+			<p>© <span id="year"></span> SmartDental Pro. All rights reserved.</p>
 		</div>
 	</footer>
-
 	<div id="chatbot" class="chatbot">
 		<button id="chatToggle" aria-label="Open chat" class="chat-toggle">AI</button>
 		<div class="chat-window" hidden>
@@ -66,7 +53,6 @@
 			</form>
 		</div>
 	</div>
-
 	<script src="./assets/main.js"></script>
 </body>
 </html>
